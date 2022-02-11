@@ -1,3 +1,4 @@
+![Madabina logo] (https://madabina.com/assets/img/logo/logo-madabina.svg)
 # Contracts 
 [Madabina](https://madabina.com/) Smart Contracts
 
@@ -5,6 +6,9 @@
 1. [General Info](#general-info)
 2. [$MDBN (ERC-20)](#mdbn) 
 2. [$MDBN ICO ](#mdbn-ico) 
+
+> These contracts are deployed on the Polygon Mumbai network (Testnet).
+
 
 <a name="general-info"></a>
 ### General Info
