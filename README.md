@@ -1,5 +1,4 @@
-![GitHub Light](https://madabina.com/assets/img/logo/logo-madabina.svg)
-![GitHub Dark](https://madabina.com/assets/img/logo/logo-madabina.svg)
+![](https://madabina.com/assets/img/logo/logo-madabina.svg) 
 # Contracts 
 [Madabina](https://madabina.com/) Smart Contracts
 
