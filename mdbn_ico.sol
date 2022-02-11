@@ -1,9 +1,3 @@
-// ███    ███  █████  ██████   █████  ██████  ██ ███    ██  █████      ██████  ██████  ███    ███ 
-// ████  ████ ██   ██ ██   ██ ██   ██ ██   ██ ██ ████   ██ ██   ██    ██      ██    ██ ████  ████ 
-// ██ ████ ██ ███████ ██   ██ ███████ ██████  ██ ██ ██  ██ ███████    ██      ██    ██ ██ ████ ██ 
-// ██  ██  ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██  ██ ██ ██   ██    ██      ██    ██ ██  ██  ██ 
-// ██      ██ ██   ██ ██████  ██   ██ ██████  ██ ██   ████ ██   ██ ██  ██████  ██████  ██      ██
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
@@ -16,18 +10,23 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract mdbn_ico{
     address public tokenWallet;
     address public wallet;
+    uint256 public initialRate;
+    uint256 public finalRate;
     uint256 public rate; 
     uint256 public weiRaised;
 
     ERC20 public token;
 
-    constructor(uint256 _rate, address _tokenWallet, ERC20 _token) payable {
-        require(_rate > 0);
+    constructor(uint256 _initialRate, uint256 _finalRate, address _tokenWallet, ERC20 _token) payable {
+        require(_initialRate > 0);
+        require(_finalRate > 0);
 
-        rate = _rate;
+        rate = _initialRate;
         wallet = msg.sender;
         tokenWallet = _tokenWallet;
         token = _token;
+        initialRate = _initialRate;
+        finalRate = _finalRate;
     }
 
     receive () external payable {
@@ -59,16 +58,21 @@ contract mdbn_ico{
             weiAmount,
             tokens
         );
-
-        //_updatePurchasingState(_beneficiary, weiAmount);
+        
         _forwardFunds();
-        //_postValidatePurchase(_beneficiary, weiAmount);
     }
 
     function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256){
         return _weiAmount * rate;
     }
 
+    //function getCurrentRate() public view returns (uint256) {
+    // solium-disable-next-line security/no-block-members
+    //uint256 elapsedTime = block.timestamp.sub(openingTime);
+    //uint256 timeRange = closingTime.sub(openingTime);
+    //uint256 rateRange = initialRate.sub(finalRate);
+    //return initialRate.sub(elapsedTime.mul(rateRange).div(timeRange));
+    //}
 
     function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal{
         _deliverTokens(_beneficiary, _tokenAmount);
@@ -89,8 +93,9 @@ contract mdbn_ico{
     }
 
     // Validations
-    function _preValidatePurchase(address _beneficiary, uint256 _weiAmount) pure internal{
-        require(_beneficiary != address(0));
-        require(_weiAmount != 0);
+    function _preValidatePurchase(address _beneficiary, uint256 _weiAmount) view internal{
+        require(_beneficiary != address(0), "Beneficiary is null!");
+        require(_weiAmount != 0, "Purchased Amount is zero!"); 
+        require(_weiAmount > remainingTokens(), "Remaining Tokens < Purchased Amount!");
     }
 }
