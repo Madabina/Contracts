@@ -188,6 +188,25 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "_nonce",
+						"type": "uint256"
+					}
+				],
+				"name": "isRewarded",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
@@ -211,6 +230,19 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -269,12 +301,38 @@
 			{
 				"inputs": [
 					{
+						"internalType": "bool",
+						"name": "_paused",
+						"type": "bool"
+					}
+				],
+				"name": "setPaused",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "_signer",
 						"type": "address"
 					}
 				],
 				"name": "setSigner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_wallet",
+						"type": "address"
+					}
+				],
+				"name": "setWallet",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -481,11 +539,11 @@
 			]
 		},
 		"affiliate-Management-System.sol": {
-			"keccak256": "0xdd01c188500c819691005bf818e530758e117537009a1f046b3ef87f5ba861cd",
+			"keccak256": "0x3f082e1e4df62e4db5ff4b67ff6fa4ac3ef0b68e46fa1720a3489efbd69c4207",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cd59284c3f174330c49df9e85af2819b6cbf17c56ef2aa760d8e2d1c7994cb3f",
-				"dweb:/ipfs/Qmc29MXmgze36dHT4g6TDoJVaVrinmNqaW7vCvS6VevUY7"
+				"bzz-raw://4999195a3c43a1f852d2f8c5a36c778bc651afc4b969e5d31ba68d1cb8aff2e0",
+				"dweb:/ipfs/QmYGmgvhawxdNmyZsBpBAGrEMV9kAgYDvUg7LCsEP3JtNq"
 			]
 		}
 	},

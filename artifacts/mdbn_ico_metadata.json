@@ -103,6 +103,32 @@
 			},
 			{
 				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "rate",
 				"outputs": [
 					{
@@ -125,6 +151,71 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "setOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_paused",
+						"type": "bool"
+					}
+				],
+				"name": "setPaused",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ERC20",
+						"name": "_token",
+						"type": "address"
+					}
+				],
+				"name": "setToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_tokenWallet",
+						"type": "address"
+					}
+				],
+				"name": "setTokenWallet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_wallet",
+						"type": "address"
+					}
+				],
+				"name": "setWallet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -244,11 +335,11 @@
 			]
 		},
 		"mdbn_ico.sol": {
-			"keccak256": "0xc9907d8fe0d365d1721ed65c06c9224955f1939b1aeab8a9690a879c0ad62c9e",
+			"keccak256": "0xae4b151c129a5e2ff0cc5d3fdf7495ad3cf9d9207c4347d2962f0fba2fb51d79",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6aafcb6deaa8fd711d1f4927a8e66d8157241f8244470c28974addb6a8705e3a",
-				"dweb:/ipfs/QmYrz34n5h8W9ZNmiczamdaP8nwbYUdd9UqHvP6s3SaKGm"
+				"bzz-raw://1965cb7f85838f14d93d4527ffbf1630a135e99a32f25556bddd4db289ffe167",
+				"dweb:/ipfs/QmTNwX7PiPm8YrszDvMW4Jh6QQAGxGDxcXp2k2w55wfzqG"
 			]
 		}
 	},

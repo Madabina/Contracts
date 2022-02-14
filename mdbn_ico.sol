@@ -6,6 +6,7 @@
 
 
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.2;
 
 //import "https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/token/ERC20/ERC20.sol"; 
@@ -15,13 +16,15 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract mdbn_ico{
+    
+    address public owner;
     address public tokenWallet;
     address public wallet;
     uint256 public initialRate;
     uint256 public finalRate;
     uint256 public rate; 
     uint256 public weiRaised;
-
+    bool public paused;
     ERC20 public token;
 
     constructor(uint256 _initialRate, uint256 _finalRate, address _tokenWallet, ERC20 _token) payable {
@@ -29,6 +32,7 @@ contract mdbn_ico{
         require(_finalRate > 0);
 
         rate = _initialRate;
+        owner = msg.sender;
         wallet = msg.sender;
         tokenWallet = _tokenWallet;
         token = _token;
@@ -55,9 +59,9 @@ contract mdbn_ico{
         // calculate token amount to be created
         uint256 tokens = _getTokenAmount(weiAmount);
 
-        weiRaised = weiRaised + weiAmount;
-
         _processPurchase(_beneficiary, tokens);
+
+        weiRaised = weiRaised + weiAmount;
 
         emit TokenPurchase(
             msg.sender,
@@ -101,8 +105,40 @@ contract mdbn_ico{
 
     // Validations
     function _preValidatePurchase(address _beneficiary, uint256 _weiAmount) view internal{
+        require(paused == false, "Contract Paused!");
         require(_beneficiary != address(0), "Beneficiary is null!");
         require(_weiAmount != 0, "Purchased Amount is zero!"); 
         require(_weiAmount > remainingTokens(), "Remaining Tokens < Purchased Amount!");
+    }
+
+    // setWallet
+    function setWallet  (address _wallet) public onlyOwner{
+        wallet = _wallet;
+    }
+
+    // setTokenWallet
+    function setTokenWallet (address _tokenWallet) public onlyOwner{
+        tokenWallet = _tokenWallet;
+    }
+
+    // setWallet
+    function setToken (ERC20 _token) public onlyOwner{
+        token = _token;
+    }
+
+    // setPaused
+    function setPaused (bool _paused) public onlyOwner{
+        paused = _paused;
+    }
+    
+    // setOwner
+    function setOwner (address _owner) public onlyOwner{
+        owner = _owner;
+    }
+
+    // Modifier onlyOwner
+    modifier onlyOwner {
+      require(msg.sender == owner);
+      _;
     }
 }
