@@ -14,39 +14,55 @@ pragma solidity ^0.8.2;
 */
 
 contract VerifySignature {
+
     /* 1. Unlock MetaMask account
     ethereum.enable()
     */
 
     /* 2. Get message hash to sign
     getMessageHash(
-        0x14723A09ACff6D2A60DcdF7aA4AFf308FDDC160C,
-        123,
-        "coffee and donuts",
-        1
+        0x72480bC5a8a4ca9ed3008cEc09256432c867Eb8f,
+        20, 
+        9000
     )
 
-    hash = "0xcf36ac4f97dc10d91fc2cbb20d718e94a8cbfe0f82eaedc6a4aa38946fb797cd"
+    hash = "0xa0717b9d9b83fef1e620a37f5bf461a37af59f73cbb167ba76905e863aa1de67"
     */
     function getMessageHash(
         address _to,
-        uint _amount,
-        string memory _message,
-        uint _nonce
+        uint256 _amount,
+        /*string memory _message,*/
+        uint256 _nonce
     ) public pure returns (bytes32) {
-        return keccak256(abi.encodePacked(_to, _amount, _message, _nonce));
+        return keccak256(abi.encodePacked(_to, _amount, /*_message,*/ _nonce));
+    }  
+
+/* 2. Get getEncodePacked
+    getEncodePacked(
+        0x72480bC5a8a4ca9ed3008cEc09256432c867Eb8f,
+        20, 
+        9000
+    )*/
+    function getEncodePacked(
+        address _to,
+        uint256 _amount,
+        /*string memory _message,*/
+        uint256 _nonce
+    ) public pure returns ( bytes memory) {
+        bytes memory res = abi.encodePacked(_to, _amount, /*_message,*/ _nonce);
+        return res;
     }
 
     /* 3. Sign message hash
     # using browser
-    account = "copy paste account of signer here"
-    ethereum.request({ method: "personal_sign", params: [account, hash]}).then(console.log)
+    account_signer = "0x70B7562b53b4c7563A0c4DFccf307DfA1e8E81DC"
+    ethereum.request({ method: "personal_sign", params: ["0x70B7562b53b4c7563A0c4DFccf307DfA1e8E81DC", "hash"]}).then(console.log)
 
     # using web3
     web3.personal.sign(hash, web3.eth.defaultAccount, console.log)
 
-    Signature will be different for different accounts
-    0x993dab3dd91f5c6dc28e17439be475478f5635c92a56e17e82349d3fb2f166196f466c0b4e0c146f285204f0dcb13e5ae67bc33f4b888ec32dfe0a063e8f3f781b
+    Signature will be different for different accounts :
+    0x00000000000000000000000000000000000000000000
     */
     function getEthSignedMessageHash(bytes32 _messageHash)
         public
@@ -63,28 +79,29 @@ contract VerifySignature {
             );
     }
 
+
+
     /* 4. Verify signature
-    signer = 0xB273216C05A8c0D4F0a4Dd0d7Bae1D2EfFE636dd
-    to = 0x14723A09ACff6D2A60DcdF7aA4AFf308FDDC160C
-    amount = 123
-    message = "coffee and donuts"
+    signer = 0x70B7562b53b4c7563A0c4DFccf307DfA1e8E81DC
+    to = 0x72480bC5a8a4ca9ed3008cEc09256432c867Eb8f
+    amount = 20 
     nonce = 1
-    signature =
-        0x993dab3dd91f5c6dc28e17439be475478f5635c92a56e17e82349d3fb2f166196f466c0b4e0c146f285204f0dcb13e5ae67bc33f4b888ec32dfe0a063e8f3f781b
+    signature = 0x00000000000000000000000000000000000
     */
-    function verify(
+    function verifySignature(
         address _signer,
         address _to,
-        uint _amount,
-        string memory _message,
-        uint _nonce,
+        uint256 _amount,
+        /*string memory _message,*/
+        uint256 _nonce,
         bytes memory signature
     ) public pure returns (bool) {
-        bytes32 messageHash = getMessageHash(_to, _amount, _message, _nonce);
+        bytes32 messageHash = getMessageHash(_to, _amount, /*_message,*/ _nonce);
         bytes32 ethSignedMessageHash = getEthSignedMessageHash(messageHash);
 
         return recoverSigner(ethSignedMessageHash, signature) == _signer;
     }
+
 
     function recoverSigner(bytes32 _ethSignedMessageHash, bytes memory _signature)
         public
@@ -105,7 +122,7 @@ contract VerifySignature {
             uint8 v
         )
     {
-        require(sig.length == 65, "invalid signature length");
+        //require(sig.length == 64, "invalid signature length");
 
         assembly {
             /*

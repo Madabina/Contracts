@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.2+commit.661d1103"
 	},
 	"language": "Solidity",
 	"output": {
@@ -23,7 +23,7 @@
 						"type": "address"
 					}
 				],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
 			{
@@ -32,7 +32,7 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "wallet_address",
+						"name": "to",
 						"type": "address"
 					},
 					{
@@ -55,8 +55,13 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_beneficiary",
+						"name": "_to",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
@@ -64,24 +69,71 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "bytes",
+						"name": "_signature",
+						"type": "bytes"
+					}
+				],
+				"name": "_preValidateReward",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "_weiAmount",
+						"name": "_amount",
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
-						"name": "_message",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "_nonce",
+						"type": "uint256"
 					},
 					{
 						"internalType": "bytes",
-						"name": "_sig",
+						"name": "_signature",
 						"type": "bytes"
 					}
 				],
 				"name": "claimReward",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_nonce",
+						"type": "uint256"
+					}
+				],
+				"name": "getEncodePacked",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -116,11 +168,6 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
-						"name": "_message",
-						"type": "string"
-					},
-					{
 						"internalType": "uint256",
 						"name": "_nonce",
 						"type": "uint256"
@@ -135,6 +182,38 @@
 					}
 				],
 				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "nonces",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -172,6 +251,32 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "setOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_signer",
+						"type": "address"
+					}
+				],
+				"name": "setSigner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -260,11 +365,6 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
-						"name": "_message",
-						"type": "string"
-					},
-					{
 						"internalType": "uint256",
 						"name": "_nonce",
 						"type": "uint256"
@@ -275,7 +375,7 @@
 						"type": "bytes"
 					}
 				],
-				"name": "verify",
+				"name": "verifySignature",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -328,7 +428,7 @@
 		"compilationTarget": {
 			"affiliate-Management-System.sol": "AffiliateManagementSystem"
 		},
-		"evmVersion": "london",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -373,19 +473,19 @@
 			]
 		},
 		"Verify-Signature.sol": {
-			"keccak256": "0x01606da9f52905b55815cce3e102550f8eddaa83b845c5f1b8f44b52baefb882",
+			"keccak256": "0x7fc8bcfe82bfe53de38159df76237a08a04dbd375e5ffc7a6656e40375a83cf9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b0de6fc7a48341083cec3dc58e50bb660e648e195466090eed54fff94f5703ec",
-				"dweb:/ipfs/QmXHUVGtDK3LyQRLmAXhPM3aL9kHBXoWYYRoek2LtozkX4"
+				"bzz-raw://8c9e58ab2ae917c4c91beb43f4e6f7f1fb5fa8946619a72eb3c666f214cac334",
+				"dweb:/ipfs/QmbpvoN1trgujAx5ZQ8Eikn8wqPhPrWuzuTUdk7f29ReGU"
 			]
 		},
 		"affiliate-Management-System.sol": {
-			"keccak256": "0x67ba69a0bb5c90d9b42cc2a7d6e767f0e0c1ed1ed129e24ee0ca159be2e2bf53",
+			"keccak256": "0xdd01c188500c819691005bf818e530758e117537009a1f046b3ef87f5ba861cd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0e7d772d883f02a05993abdf060736608488831ed11bebd546289439c3db2579",
-				"dweb:/ipfs/QmSp8JrWAzmjC42TH2cvXoymjJ4R1BsSAqJuaXj2ZRCmHs"
+				"bzz-raw://cd59284c3f174330c49df9e85af2819b6cbf17c56ef2aa760d8e2d1c7994cb3f",
+				"dweb:/ipfs/Qmc29MXmgze36dHT4g6TDoJVaVrinmNqaW7vCvS6VevUY7"
 			]
 		}
 	},

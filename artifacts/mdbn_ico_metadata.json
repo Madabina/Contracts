@@ -244,11 +244,11 @@
 			]
 		},
 		"mdbn_ico.sol": {
-			"keccak256": "0x304fce78f2e85cd6c807be62cd1a5e466d104d6eb0141af22f4ce7efdea7eaac",
+			"keccak256": "0xc9907d8fe0d365d1721ed65c06c9224955f1939b1aeab8a9690a879c0ad62c9e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c7f887deb611de9a1c06e767e12710acd4d6caa3dd5f1ebfe9d27b42105f3b2a",
-				"dweb:/ipfs/QmfAmhWkKCJFviw2pEsNvMwmHHMy29TrfULyzwRgGJGwvb"
+				"bzz-raw://6aafcb6deaa8fd711d1f4927a8e66d8157241f8244470c28974addb6a8705e3a",
+				"dweb:/ipfs/QmYrz34n5h8W9ZNmiczamdaP8nwbYUdd9UqHvP6s3SaKGm"
 			]
 		}
 	},

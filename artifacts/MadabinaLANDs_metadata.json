@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.2+commit.661d1103"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
@@ -656,7 +656,7 @@
 		"compilationTarget": {
 			"MadabinaLANDs.sol": "MadabinaLANDs"
 		},
-		"evmVersion": "istanbul",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -789,11 +789,11 @@
 			]
 		},
 		"MadabinaLANDs.sol": {
-			"keccak256": "0x2908a064fe7e81a052214568272efe1bc28f3ea9d2f7d9ff85d6f7ff7c22975b",
+			"keccak256": "0x6e5a2f0cb25ccc03763fcb3c623d62b0bf30127596bab3a816f6a9ab4daf783a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d320a009b1b57ac4ad2878c829aab1072e47247f841e17148ab5236856c1340d",
-				"dweb:/ipfs/Qmd3URmwFuoWreaRtxQQePqzaX65UYeC99wQWQGW7vCNQQ"
+				"bzz-raw://3c0a760ee498ae1f6047a29fad19b3c2ebae21aa4838c59fd202bf83a820c8ee",
+				"dweb:/ipfs/QmdTKZG4GtLi13JXF1oG4jVdmXTHpKfvTAk6aAyYu4sFyn"
 			]
 		}
 	},

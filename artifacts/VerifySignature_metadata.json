@@ -1,10 +1,39 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.2+commit.661d1103"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_nonce",
+						"type": "uint256"
+					}
+				],
+				"name": "getEncodePacked",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
 			{
 				"inputs": [
 					{
@@ -35,11 +64,6 @@
 						"internalType": "uint256",
 						"name": "_amount",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "_message",
-						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -129,11 +153,6 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
-						"name": "_message",
-						"type": "string"
-					},
-					{
 						"internalType": "uint256",
 						"name": "_nonce",
 						"type": "uint256"
@@ -144,7 +163,7 @@
 						"type": "bytes"
 					}
 				],
-				"name": "verify",
+				"name": "verifySignature",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -171,7 +190,7 @@
 		"compilationTarget": {
 			"Verify-Signature.sol": "VerifySignature"
 		},
-		"evmVersion": "london",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -184,11 +203,11 @@
 	},
 	"sources": {
 		"Verify-Signature.sol": {
-			"keccak256": "0x7d0fd2e47bcece1f148ea313312a720a649cc393817fb1e30e7a6d2b75af09f6",
+			"keccak256": "0x4e70c878be395f8d4b941154709100c6b782a3df6617e79437177af8c645d963",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a090d3b2c8fd316c9404e54d923dc6cf1e9b1032dc0d44122f1b22b7575b25ab",
-				"dweb:/ipfs/QmYQEgY1dF77MsMiHVfGuZjErUD9FvPgaVh8Vfk7eQ4Ysb"
+				"bzz-raw://51cf1e30b1afbd590348946241da6d313c0c265ceffb61540fd52d7a02ad0aef",
+				"dweb:/ipfs/QmP3htpKrwDZWbCbJt4A517xSGWT74fgh2KSAKtpkfWTRf"
 			]
 		}
 	},
